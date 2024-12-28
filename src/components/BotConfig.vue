@@ -37,6 +37,35 @@
               @update:search="fetchUsers"
             ></v-autocomplete>
           </template>
+          <template v-else-if="field === 'kucoin_api_key'">
+            <v-text-field 
+              variant="underlined"
+              color="primary"
+              label="KuCoin API Key"
+              v-model="values[field]"
+              :hint="'Enter your KuCoin API Key'"
+            ></v-text-field>
+          </template>
+          <template v-else-if="field === 'kucoin_secret_key'">
+            <v-text-field 
+              variant="underlined"
+              color="primary"
+              label="KuCoin Secret Key"
+              v-model="values[field]"
+              type="password"
+              :hint="'Enter your KuCoin Secret Key'"
+            ></v-text-field>
+          </template>
+          <template v-else-if="field === 'kucoin_passphrase'">
+            <v-text-field 
+              variant="underlined"
+              color="primary"
+              label="KuCoin API Passphrase"
+              v-model="values[field]"
+              type="password"
+              :hint="'Enter your KuCoin API Passphrase'"
+            ></v-text-field>
+          </template>
           <template v-else-if="props.data.fields[field].type === 'boolean'">
             <v-checkbox
               color="primary"
@@ -274,8 +303,6 @@ const save = async () => {
   let pathSepar = splitAndReplace(removeListSuffix(param.value))
   if(endsWithList(param.value)) 
     try {
-      delete values.value['binance_apikey']
-      delete values.value['binance_secret']
       delete values.value['_label']
       if(props?.data?.data?.id) { 
         await axios.patch(`${apiKey}${pathSepar[0]}/${pathSepar[1]}/${props?.data?.data?.id}`, values.value)
@@ -329,7 +356,10 @@ const inTab = (key) => {
       'name', 
       'user', 
       'pair', 
-      'strategy', 
+      'strategy',
+      'kucoin_api_key',
+      'kucoin_secret_key',
+      'kucoin_passphrase',
       'match_user_orders', 
       'instant_match', 
       'ohlc_period', 
