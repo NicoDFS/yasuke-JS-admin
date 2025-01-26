@@ -834,6 +834,7 @@
       "cryptocoins_trxwithdrawalapprove_list",
       "cryptocoins_bnbwithdrawalapprove_list",
       "cryptocoins_klcwithdrawalapprove_list",
+      "cryptocoins_clishawithdrawalapprove_list",
       "core_wallettransactions_list",
       "core_paygatetopup_list",
       "bots_botconfig_list",
